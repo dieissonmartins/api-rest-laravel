@@ -14,7 +14,18 @@ class CreateTableRealState extends Migration
     public function up()
     {
         Schema::create('real_state', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            
+            $table->string('title');
+            $table->string('description');
+            $table->text('content');
+            $table->float('price', 10, 2);
+            $table->integer('bathrooms');
+            $table->integer('badrooms');
+            $table->integer('property_area');
+            $table->integer('total_property_area');
+            $table->string('slug');
+           
             $table->timestamps();
         });
     }
