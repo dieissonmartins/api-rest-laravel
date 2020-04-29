@@ -15,6 +15,9 @@ class CreateTableUserProfile extends Migration
     {
         Schema::create('user_profile', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             
             $table->text('about')->nullable(true);
             $table->text('social_networks')->nullable(true);
