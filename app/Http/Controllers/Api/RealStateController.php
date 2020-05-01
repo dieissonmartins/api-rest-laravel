@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\RealState;
+use App\Http\Requests\RealStateResquest;
 
 class RealStateController extends Controller
 {
@@ -42,7 +43,7 @@ class RealStateController extends Controller
         }
     } 
 
-    public function store(Request $request)
+    public function store(RealStateResquest $request)
     {   
         $data =  $request->all();
 
@@ -63,7 +64,7 @@ class RealStateController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, RealStateResquest $request)
     {
         $data =  $request->all();
 
