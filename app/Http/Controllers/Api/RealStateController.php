@@ -22,6 +22,26 @@ class RealStateController extends Controller
         return response()->json($realState, 200);
     }
 
+    public function show($id)
+    {
+        try{
+
+            $realState = $this->realState->findOrFail($id); //Mass Asignment
+
+            return response()->json([
+                'data' => [
+                    'realState' => 'dados do Imóvel!',
+                    'dataState' =>  $realState
+                ]
+            ], 200);
+
+        }catch(\Exception $e){
+        
+            return response()->json(['error' => $e->getMessage()], 401);
+        
+        }
+    } 
+
     public function store(Request $request)
     {   
         $data =  $request->all();
@@ -36,7 +56,6 @@ class RealStateController extends Controller
                 ]
             ], 200);
 
-        
         }catch(\Exception $e){
         
             return response()->json(['error' => $e->getMessage()], 401);
@@ -52,7 +71,6 @@ class RealStateController extends Controller
 
             $realState = $this->realState->findOrFail($id); //Mass Asignment
             $realState->update($data);
-
 
             return response()->json([
                 'data' => [
@@ -75,14 +93,12 @@ class RealStateController extends Controller
             $realState = $this->realState->findOrFail($id); //Mass Asignment
             $realState->delete();
             
-
             return response()->json([
                 'data' => [
                     'msq' => 'Imóvel Deletado com sucesso!'
                 ]
             ], 200);
 
-        
         }catch(\Exception $e){
         
             return response()->json(['error' => $e->getMessage()], 401);
