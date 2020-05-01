@@ -52,11 +52,33 @@ class RealStateController extends Controller
 
             $realState = $this->realState->findOrFail($id); //Mass Asignment
             $realState->update($data);
-            
+
 
             return response()->json([
                 'data' => [
                     'msq' => 'Imóvel Editado com sucesso!'
+                ]
+            ], 200);
+
+        
+        }catch(\Exception $e){
+        
+            return response()->json(['error' => $e->getMessage()], 401);
+        
+        }
+    }
+
+    public function destroy($id)
+    {
+        try{
+
+            $realState = $this->realState->findOrFail($id); //Mass Asignment
+            $realState->delete();
+            
+
+            return response()->json([
+                'data' => [
+                    'msq' => 'Imóvel Deletado com sucesso!'
                 ]
             ], 200);
 
