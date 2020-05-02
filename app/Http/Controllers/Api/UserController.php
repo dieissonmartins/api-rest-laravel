@@ -71,7 +71,8 @@ class UserController extends Controller
     {
         try{
 
-            $user = $this->user->findOrFail($id); //Mass Asignment
+            $user = $this->user->with('profile')->findOrFail($id); //Mass Asignment
+            $user->profile->social_networks = unserialize($user->profile->social_networks);
 
             return response()->json([
                 'data' => $user
