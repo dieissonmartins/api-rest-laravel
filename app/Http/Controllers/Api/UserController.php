@@ -39,6 +39,7 @@ class UserController extends Controller
 
         try{
 
+            $data['password'] = bcrypt($data['password']);
             $user = $this->user->create($data); //Mass Asignment
 
             return response()->json([
