@@ -94,9 +94,13 @@ class UserController extends Controller
         $data =  $request->all();
 
         try{
+            $profile = $data['profile'];
+            $profile['social_networks'] = serialize($profile['social_networks']);
 
             $user = $this->user->findOrFail($id); //Mass Asignment
             $user->update($data);
+
+            $user->profile()->update($profile);
 
             return response()->json([
                 'data' => [
