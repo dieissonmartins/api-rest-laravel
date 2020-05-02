@@ -55,6 +55,12 @@ class RealStateController extends Controller
                 $realState->categories()->sync($data['categories']);
             }
 
+            if($images){
+                foreach($images as $image){
+                   $path = $image->store('images', 'public');
+                }
+            }
+
             return response()->json([
                 'data' => [
                     'msq' => 'Imóvel Cadastrado com sucesso!'
