@@ -16,6 +16,9 @@ Route::prefix('v1')->namespace('Api')->group(function(){
         Route::resource('real-states', 'RealStateController');
     });
 
+    Route::get('/search', 'RealStateSearchController@index')->name('search');
+    Route::get('/search/{id}', 'RealStateSearchController@show')->name('search.show');
+
     Route::name('users.')->group(function(){
     
         Route::resource('users', 'UserController');
